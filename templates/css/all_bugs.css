@@ -1,8 +1,20 @@
+h1, h2 {
+	margin-left: 40px;
+}
+
+h6 {
+	font-size: 1.05em;
+}
+
+.bugs {
+	margin-left: 40px;
+}
+
 .bug {
 	display:inline-block;
 }
 
 div.bug {
 	height: 20px;
-	width:100%;
+	width: 100%;
 }

@@ -4,23 +4,23 @@
 	<meta charset="UTF-8">
 	<title>All bugs</title>
 	<link rel="stylesheet" href="css/all_bugs.css">
-	<link rel="stylesheet" href="css/h1h2.css">
+	<link rel="stylesheet" href="css/bodyh1h2.css">
 </head>
 <body>
 	<h1>Truck Bug Tracker</h1>
 	<h2>All bugs</h2>
+	<div class="create-bug">
+		<a href="/bug/create"><button>Create new bug</button></a>
+	</div>
+	<div class="to-index">
+		<a href="/"><button>Back to Main Page</button></a>
+	</div>
 	<div class="bugs">
-	{% for bug_id, bug_title in bugs%}
+	{% for bug_id, bug_title in bugs %}
 	<div class="bug">
-		<div class="emb">
-			<h6 class="bug">Bug #{{bug_id}}</h6>
-		</div>
-		<div class="emb">
-			<p class="bug">{{bug_title}}</p>
-		</div>
-		<div class="emb">
-			<a href="/bug/{{bug_id}}" class="bug">Go to bug</a>
-		</div>
+		<h6 class="bug">Bug #{{bug_id}}</h6>
+		<p class="bug">{{bug_title}}</p>
+		<a href="/bug/{{bug_id}}" class="bug"><button>Go to bug</button></a>
 	</div>
 	{% endfor %}
 	</div>

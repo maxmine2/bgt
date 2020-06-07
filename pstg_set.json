@@ -1,4 +1,4 @@
-settings = {
+{    
     "database":"postgres",
     "user":"postgres",
     "password":"132",

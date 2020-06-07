@@ -20,6 +20,7 @@ def index():
     return render_template("index.html", project_name=man_settings["project_name"])
 
 @app.route('/bug')
+@app.route('/bugs')
 def all_bug():
     bugs = []
     for every_bug in pstg.get_all_bugs():
@@ -96,6 +97,84 @@ def bug_cancel(bug_id):
         elif request.form.get("psswrd") != bug[0][5]:
             return render_template("cancel.html", message="Password is uncorrect", bug_id=bug_id)
     return render_template("cancel.html", bug_id=bug_id)
-        
+
+@app.errorhandler(400)
+@app.route('/err400')
+def e400(e):
+    return render_template('400.html'), 400
+@app.errorhandler(401)
+@app.route('/err401')
+def e401(e):
+    return render_template('401.html'), 401
+@app.route('/err402')
+def e402(e):
+    return render_template('402.html'), 402
+@app.errorhandler(403)
+@app.route('/err403')
+def e403(e):
+    return render_template('403.html'), 403
+@app.errorhandler(404)
+@app.route('/err404')
+def e404(e):
+    return render_template('404.html'), 404
+@app.errorhandler(405)
+@app.route('/err405')
+def e405(e):
+    return render_template('405.html'), 405
+@app.errorhandler(406)
+@app.route('/err406')
+def e406(e):
+    return render_template('406.html'), 406
+@app.route('/err407')
+def e407(e):
+    return render_template('407.html'), 407
+@app.errorhandler(408)
+@app.route('/err408')
+def e408(e):
+    return render_template('408.html'), 408
+@app.errorhandler(409)
+@app.route('/err409')
+def e409(e):
+    return render_template('409.html'), 409
+@app.errorhandler(410)
+@app.route('/err410')
+def e410(e):
+    return render_template('410.html'), 410
+@app.errorhandler(411)
+@app.route('/err411')
+def e411(e):
+    return render_template('411.html'), 411
+@app.errorhandler(412)
+@app.route('/err412')
+def e412(e):
+    return render_template('412.html'), 412
+@app.errorhandler(413)
+@app.route('/err413')
+def e413(e):
+    return render_template('413.html'), 413
+@app.errorhandler(414)
+@app.route('/err414')
+def e414(e):
+    return render_template('414.html'), 414
+@app.errorhandler(415)
+@app.route('/err415')
+def e415(e):
+    return render_template('415.html'), 415
+@app.errorhandler(416)
+@app.route('/err416')
+def e416(e):
+    return render_template('416.html'), 416
+@app.errorhandler(417)
+@app.route('/err417')
+def e417(e):
+    return render_template('417.html'), 417
+@app.errorhandler(418)
+@app.route('/err418')
+@app.route('/errTeapod')
+@app.route('/teapod')
+@app.route('/iamteapod')
+def e418(e):
+    return render_template('418.html'), 418
+      
 if __name__ == "__main__":
     app.run(port=8080)

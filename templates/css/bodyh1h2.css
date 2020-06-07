@@ -4,6 +4,7 @@
 body {
 	font-size: 18px;
 	font-family: "Roboto", sans-serif;
+	background-color: #ffe1ca
 }
 
 @media (max-width:970px) {
@@ -29,4 +30,13 @@ body {
 	text-align: center;
 	font-size: 1.2em;
 	color: rgba(40, 30, 40, 0.9);
+}
+
+button {
+	background-color: #ffe45d;
+}
+
+button:hover {
+	background-color: #ffaa41;
+	cursor: pointer;
 }

@@ -1,5 +1,8 @@
 import psycopg2
-from pstg_set import settings
+import json
+# from pstg_set import settings
+
+settings = json.load(open("pstg_set.json", "r"))
 
 con = psycopg2.connect(
   database=settings["database"], 

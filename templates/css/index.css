@@ -7,7 +7,6 @@ div.h1 {
 
 main {
 	width: 720px;
-	position: fixed;
-	top: 50%;		
-	left: 35%;
+	justify-content: center;
+	margin-top: auto;
 }
