@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Change status of bug #{{ bug_id }}</title>
+</head>
+<body>
+	<h1>Change status of bug #{{ bug_id }}</h1>
+	{% if message %}
+		<p>{{message}}</p>
+		<a href="{{link}}">Go to bug.</a>
+	{% endif %}
+	<form id="cs" method="post" action="/bug/{{ bug_id }}/status/change">
+		<p><select form="cs" name="status">
+			<option value="" disabled>Choose new status</option>
+			<option value=0 {{o0_disbl}}>0 — Opened</option>
+			<option value=1 {{o1_disbl}}>1 — Working on</option>
+			<option value=2 {{o2_disbl}}>2 — In next release</option>
+			<option value=3 {{o3_disbl}}>3 — Closed</option>
+			<option value=4 {{o4_disbl}}>4 — Cancelled</option>
+		</select></p>
+		<input type="submit">
+	</form>
+</body>
+</html>

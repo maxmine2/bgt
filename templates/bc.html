@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Create a bug</title>
+</head>
+<body>
+	<h1>Create a bug form</h1>
+	{% if message %}
+		<p>{{message}}</p>
+		<a href="{{link}}">Go to bug</a>
+	{% endif %}
+	<form method="post" action="/bug/create" style="width: 350px; position: fixed; top: 30%; left: 40%" requied>
+		<input type="text" name="title" maxlength="63" placeholder="Bug title" style="width: 350px;" requied minlength=3>
+		<input type="email" name="mail" placeholder="example@example.com" style="width: 350px;" requied minlength=10>
+		<input type="text" name="description" maxlength="16383" placeholder="Bug description..." style="width: 350px;" requied>
+		<p style="font-size: 12px">Password uses to delete or cancel bug.</p>
+		<input type="password" name="pass" size=16 placeholder="Password" style="width: 350px;" requied minlength=1>
+		<input type="submit" name="Create bug!">
+	</form>
+</body>
+</html>

@@ -1,0 +1,8 @@
+.bug {
+	display:inline-block;
+}
+
+div.bug {
+	height: 20px;
+	width:100%;
+}

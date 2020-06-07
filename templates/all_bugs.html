@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>All bugs</title>
+	<link rel="stylesheet" href="css/all_bugs.css">
+	<link rel="stylesheet" href="css/h1h2.css">
+</head>
+<body>
+	<h1>Truck Bug Tracker</h1>
+	<h2>All bugs</h2>
+	<div class="bugs">
+	{% for bug_id, bug_title in bugs%}
+	<div class="bug">
+		<div class="emb">
+			<h6 class="bug">Bug #{{bug_id}}</h6>
+		</div>
+		<div class="emb">
+			<p class="bug">{{bug_title}}</p>
+		</div>
+		<div class="emb">
+			<a href="/bug/{{bug_id}}" class="bug">Go to bug</a>
+		</div>
+	</div>
+	{% endfor %}
+	</div>
+</body>
+</html>

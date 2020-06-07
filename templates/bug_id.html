@@ -8,12 +8,12 @@
 </head>
 <body>
 	<footer>
-		<h2>Bug #{{ bug_id }}</h2>
+		<h2>Bug #{{ bug_id }}: {{bug_title}}</h2>
 	</footer>
 	<main>
-		<h3>{{ bug_title }}</h3>
+		<h4 style="font-weight: 300;">Creator: {{ mail }}</h4>
 		<p>{{ bug_description }}</p>
-		<p style="font-weight: 600">Status {{ bug_status_pbl }}</p>
+		<p style="font-weight: 600">Status: {{ bug_status_pbl }}</p>
 	</main>
 </body>
 </html>

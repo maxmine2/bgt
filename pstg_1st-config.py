@@ -10,7 +10,8 @@ con = psycopg2.connect(
 )
 
 cursor = con.cursor()
-
-cursor.execute("""CREATE TABLE bugs (id integer, status integer, title text, description text, psw text)""")
+cursor.execute("""DROP TABLE bugs""")
+con.commit()
+cursor.execute("""CREATE TABLE bugs (id integer, status integer, title text, description text, email text, psw text)""")
 con.commit()
 print("Configuration of bugs' database is ended. The database name is ", settings["database"])
