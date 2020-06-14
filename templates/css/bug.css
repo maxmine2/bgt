@@ -1,12 +1,16 @@
 body {
-	background-color: lightgray;
 	font-family: "Roboto";
-
 }
 
-footer {
-	background-color: lightblue;
-	color: rgb(240, 240, 240);
-	
+.creator {
+	font-weight: 300;
+}
 
+.status {
+	font-size: 600;
+}
+
+button {
+	margin-top: auto;
+	margin-bottom: auto;
 }

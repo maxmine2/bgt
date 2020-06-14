@@ -1,7 +1,11 @@
-from flask import Flask, render_template, request
-import pstg
 import json
 import logging as log
+import os
+import random
+
+from flask import Flask, render_template, request
+
+import pstg
 
 log.basicConfig(filename='man.log', filemode='w', format='%(levelname)s - %(name)s - %(message)s')
 
@@ -9,6 +13,8 @@ man_settings = json.load(open("man_set.json", "r"))
 
 app = Flask(__name__, template_folder="templates", static_folder="templates/css")
 app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
+app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024
+app.config['UPLOAD_FOLDER'] = man_settings["uploads_folder"]
 
 BUG_STATUS = {
     0:"Opened",
@@ -17,6 +23,16 @@ BUG_STATUS = {
     3:"Closed",
     4:"Canceled"
 }
+
+def gen():
+    res = str()
+    for i in range(16):
+        a = chr(random.randint(97, 122))
+        if random.randint(0, 2) == 1:
+            a += chr(random.randint(48, 57))
+        res += (a)
+    return res + ".png"
+
 
 @app.route('/')
 def index():
@@ -36,11 +52,21 @@ def all_bug():
 @app.route('/bug/create', methods=['post', 'get'])
 def bug_create_page():
     msg = ''
+    fl = None
+    flnm = ''
+    flpath = ''
     bug_id_new = 0
     log.info("Asked for Create Bug Page")
     if request.method == "POST":
         log.debug("Method POST used")
-        bug_id_new = pstg.create_new_bug({"t": request.form.get('title'), "m": request.form.get('mail'), "d": request.form.get('description'), "p": request.form.get('pass'),})
+        if request.files != []:
+            fl = request.files['imagination']
+            flnm = gen()
+            log.debug(f"flnm={flnm}")
+            a = man_settings["uploads_folder"]
+            flpath = man_settings["uploads_folder"] + flnm
+            fl.save(os.path.join(app.config["UPLOAD_FOLDER"], flnm))
+        bug_id_new = pstg.create_new_bug({"t": request.form.get('title'), "m": request.form.get('mail'), "d": request.form.get('description'), "p": request.form.get('pass'), "i":flpath})
         log.debug(f"Bug Id returned: {bug_id_new}")
         msg = 'Bug succesfully created. '
         log.info(f'Bug #{bug_id_new} created sucessfull')
@@ -51,10 +77,10 @@ def bug_create_page():
 def bug_id_page(bug_id):
     log.info("Asked for Bug Info Page")
     bug = pstg.get_bug_by_id(bug_id)
-    log.debug(f"Collected Bug's id:{bug[0][0]}")
     if bug == []:
         return render_template("bug_id.html", bug_id=bug_id, bug_title="Bug not found")
-    return render_template("bug_id.html", bug_id=bug_id, bug_title=bug[0][2], mail=bug[0][4], bug_description=bug[0][3], bug_status_pbl=BUG_STATUS[bug[0][1]])
+    log.debug(f"Collected Bug's id:{bug[0][0]}")
+    return render_template("bug_id.html", bug_id=bug_id, bug_title=bug[0][2], mail=bug[0][4], bug_description=bug[0][3], bug_status_pbl=BUG_STATUS[bug[0][1]], img_src=bug[0][6])
 
 @app.route('/bug/<int:bug_id>/close', methods=['post', 'get'])
 def bug_remove(bug_id):
@@ -98,7 +124,6 @@ def bug_status_change_page(bug_id):
 def bug_cancel(bug_id):
     msg = ''
     bug=pstg.get_bug_by_id(bug_id)
-    print(bug)
     if bug == []:
         return render_template("cancel.html", message="Bug not found", bug_id=bug_id)
     if request.method == "POST":
@@ -111,83 +136,89 @@ def bug_cancel(bug_id):
             return render_template("cancel.html", message="Password is uncorrect", bug_id=bug_id)
     return render_template("cancel.html", bug_id=bug_id)
 
+@app.route(f'/{man_settings["uploads_folder"]}/<file_name>.png')
+def img_return(file_name):
+    return open(f"{man_settings['uploads_folder']}{file_name}.png", "rb").read()
+
+@app.route(f'/favicon.ico')
+def favicon_binary_img_return():
+    return open('favicon.ico', "rb").read()
+
 @app.errorhandler(400)
 @app.route('/err400')
-def e400():
+def e400(e):
     return render_template('400.html'), 400
 @app.errorhandler(401)
 @app.route('/err401')
-def e401():
+def e401(e):
     return render_template('401.html'), 401
 @app.route('/err402')
-def e402():
+def e402(e):
     return render_template('402.html'), 402
 @app.errorhandler(403)
 @app.route('/err403')
-def e403():
+def e403(e):
     return render_template('403.html'), 403
 @app.errorhandler(404)
 @app.route('/err404')
-def e404():
+def e404(e):
     return render_template('404.html'), 404
 @app.errorhandler(405)
 @app.route('/err405')
-def e405():
+def e405(e):
     return render_template('405.html'), 405
 @app.errorhandler(406)
 @app.route('/err406')
-def e406():
+def e406(e):
     return render_template('406.html'), 406
 @app.route('/err407')
-def e407():
+def e407(e):
     return render_template('407.html')  
 @app.errorhandler(408)
 @app.route('/err408')
-def e408():
+def e408(e):
     return render_template('408.html')
 @app.errorhandler(409)
 @app.route('/err409')
-def e409():
+def e409(e):
     return render_template('409.html'), 409
 @app.errorhandler(410)
 @app.route('/err410')
-def e410():
+def e410(e):
     return render_template('410.html'), 410
 @app.errorhandler(411)
 @app.route('/err411')
-def e411():
+def e411(e):
     return render_template('411.html'), 411
 @app.errorhandler(412)
 @app.route('/err412')
-def e412():
+def e412(e):
     return render_template('412.html'), 412
 @app.errorhandler(413)
 @app.route('/err413')
-def e413():
+def e413(e):
     return render_template('413.html'), 413
 @app.errorhandler(414)
 @app.route('/err414')
-def e414():
+def e414(e):
     return render_template('414.html'), 414
 @app.errorhandler(415)
 @app.route('/err415')
-def e415():
+def e415(e):
     return render_template('415.html'), 415
 @app.errorhandler(416)
 @app.route('/err416')
-def e416():
+def e416(e):
     return render_template('416.html'), 416
 @app.errorhandler(417)
 @app.route('/err417')
-def e417():
+def e417(e):
     return render_template('417.html'), 417
 @app.errorhandler(418)
 @app.route('/err418')
-@app.route('/errTeapod')
 @app.route('/teapod')
-@app.route('/iamteapod')
-def e418():
+def e418(e):
     return render_template('418.html'), 418
       
 if __name__ == "__main__":
-    app.run(port=8080)
+    app.run(port=8080, debug=True)

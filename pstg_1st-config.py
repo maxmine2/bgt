@@ -1,5 +1,7 @@
 import psycopg2
-from pstg_set import settings
+import json
+
+settings = json.load(open("pstg_set.json", "r"))
 
 con = psycopg2.connect(
   database=settings["database"], 
@@ -10,8 +12,8 @@ con = psycopg2.connect(
 )
 
 cursor = con.cursor()
-cursor.execute("""DROP TABLE bugs""")
-con.commit()
-cursor.execute("""CREATE TABLE bugs (id integer, status integer, title text, description text, email text, psw text)""")
+# cursor.execute("""DROP TABLE bugs""")
+# con.commit()
+cursor.execute("""CREATE TABLE bugs (id integer, status integer, title text, description text, email text, psw text, img text)""")
 con.commit()
 print("Configuration of bugs' database is ended. The database name is ", settings["database"])

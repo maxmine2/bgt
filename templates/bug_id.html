@@ -3,7 +3,9 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Bug-tracker. Bug #{{ bug_id }}</title>
-	<link rel="stylesheet" href="css/bug.css">
+	<link rel="stylesheet" href="/css/bug.css">
+	<link rel="stylesheet" href="/css/bodyh1h2.css">
+	<link rel="shortcut icon" href="/favicon.ico">
 	<link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -14,6 +16,12 @@
 		<h4 style="font-weight: 300;">Creator: {{ mail }}</h4>
 		<p>{{ bug_description }}</p>
 		<p style="font-weight: 600">Status: {{ bug_status_pbl }}</p>
+		<img src="/{{img_src}}" width=500px>
+		<nav>
+			<a href="/bug/{{ bug_id }}/status/change"><button>Change Status</button></a>
+			<a href="/bug/{{ bug_id }}/cancel"><button>Cancel bug</button></a>
+			<a href="/bug/			{{ bug_id }}/close"><button><span class="caution">Close bug.</span></button></a>
+		</nav>
 	</main>
 </body>
 </html>

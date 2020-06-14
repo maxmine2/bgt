@@ -3,12 +3,15 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Change status of bug #{{ bug_id }}</title>
+	<link rel="shortcut icon" href="/favicon.ico">
+	<link rel="stylesheet" href="/css/bodyh1h2.css">
+	<link rel="stylesheet" href="/css/status.css">
 </head>
 <body>
 	<h1>Change status of bug #{{ bug_id }}</h1>
 	{% if message %}
 		<p>{{message}}</p>
-		<a href="{{link}}">Go to bug.</a>
+		<a href="{{link}}"><button>Go to bug.</button></a>
 	{% endif %}
 	<form id="cs" method="post" action="/bug/{{ bug_id }}/status/change">
 		<p><select form="cs" name="status">

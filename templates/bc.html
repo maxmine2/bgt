@@ -3,20 +3,27 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Create a bug</title>
+	<link rel="stylesheet" href="/css/bodyh1h2.css">
+	<link rel="stylesheet" href="/css/bc.css">
+	<link rel="shortcut icon" href="/favicon.ico">
 </head>
 <body>
-	<h1>Create a bug form</h1>
+	<h2>Create a bug form</h2>
 	{% if message %}
 		<p>{{message}}</p>
-		<a href="{{link}}">Go to bug</a>
+		<a href="{{link}}"><button>Go to bug</button></a>
 	{% endif %}
-	<form method="post" action="/bug/create" style="width: 350px; position: fixed; top: 30%; left: 40%" requied>
-		<input type="text" name="title" maxlength="63" placeholder="Bug title" style="width: 350px;" requied minlength=3>
-		<input type="email" name="mail" placeholder="example@example.com" style="width: 350px;" requied minlength=10>
-		<input type="text" name="description" maxlength="16383" placeholder="Bug description..." style="width: 350px;" requied>
-		<p style="font-size: 12px">Password uses to delete or cancel bug.</p>
-		<input type="password" name="pass" size=16 placeholder="Password" style="width: 350px;" requied minlength=1>
-		<input type="submit" name="Create bug!">
-	</form>
+	<div class="frm">
+		<form method="post" class="form-create" action="/bug/create" enctype="multipart/form-data">
+			<input type="text" name="title" maxlength="63" placeholder="Bug title" style="width: 350px;" required minlength=3><br>
+			<input type="email" name="mail" placeholder="example@example.com" style="width: 350px;" required minlength=6><br>
+			<textarea type="text" name="description" cols=48 placeholder="Bug description..." required></textarea><br>
+			<p style="font-size: 12px">Password uses to delete or cancel bug.</p><br>
+			<input type="password" name="pass" size=16 placeholder="Password" required minlength=1><br>
+			<input type="file" name=imagination accept="image/png">
+			<p>Only ".png" files are accepted</p>
+			<input class="button" type="submit" name="Create bug!">
+		</form>
+	</div>
 </body>
 </html>

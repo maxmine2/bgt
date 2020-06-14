@@ -31,7 +31,7 @@ def create_new_bug(data):
     new_id = a[0][0] + 1
   else:
     new_id = 0
-  cursor.execute("""INSERT INTO bugs VALUES (""" + str(new_id) + ", 0, '" + data["t"] + "', '" + data["d"] + "', '" + data["m"] + "', '" + data["p"] + "')")
+  cursor.execute("""INSERT INTO bugs VALUES (""" + str(new_id) + ", 0, '" + data["t"] + "', '" + data["d"] + "', '" + data["m"] + "', '" + data["p"] + "', '" + data["i"] + "')")
   con.commit()
   return new_id
 

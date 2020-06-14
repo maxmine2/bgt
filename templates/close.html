@@ -3,6 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Close bug</title>
+		<link rel="stylesheet" href="/css/bodyh1h2.css">
 </head>
 <body>
 	<h2>Bug #{{ bug_id }}</h2>
@@ -13,8 +14,8 @@
 		<input type="password" name="psswd" placeholder="Bug delete password"><br>
 		<p>Or</p><br>
 		<input type="password" name="root_psswd" placeholder="Enter root password">
-		<p>I am aware that I am removing the bug regardless of its status and I am ready to take responsibility in case of violation of the software development process by my action. I know what I can't regenerate bug.</p>
-		<input type="checkbox" name="i_know" value="\nI am aware that I am removing the bug regardless of its status and I am ready to take responsibility in case of violation of the software development process by my action." required style="width:300px; font-color:black;">
+		<p class="responsibility">I am aware that I am removing the bug regardless of its status and I am ready to take responsibility in case of violation of the software development process by my action. I know that I will not be able to recover the bug.</p>
+		<input type="checkbox" class="responsibility" name="i_know" required>
 		<input type="submit" value="Submit">
 	</form>
 </body>

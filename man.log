@@ -1,0 +1,8 @@
+WARNING - werkzeug -  * Debugger is active!
+INFO - werkzeug -  * Debugger PIN: 487-542-151
+INFO - werkzeug -  * Running on http://127.0.0.1:8080/ (Press CTRL+C to quit)
+INFO - werkzeug - 127.0.0.1 - - [14/Jun/2020 14:37:34] "[37mGET /bug/16 HTTP/1.1[0m" 200 -
+INFO - werkzeug - 127.0.0.1 - - [14/Jun/2020 14:37:34] "[36mGET /css/bug.css HTTP/1.1[0m" 304 -
+INFO - werkzeug - 127.0.0.1 - - [14/Jun/2020 14:37:34] "[36mGET /css/bodyh1h2.css HTTP/1.1[0m" 304 -
+INFO - werkzeug - 127.0.0.1 - - [14/Jun/2020 14:37:35] "[37mGET /uplds/fa9q3ih8kk8hfsa2q5xdmc.png HTTP/1.1[0m" 200 -
+INFO - werkzeug - 127.0.0.1 - - [14/Jun/2020 14:37:41] "[37mGET /favicon.ico HTTP/1.1[0m" 200 -
