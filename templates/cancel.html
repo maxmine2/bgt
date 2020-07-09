@@ -10,6 +10,7 @@
 	<h1>Bug #{{bug_id}} Cancelling</h1>
 	{% if message %}
 	<p>{{message}}</p>
+	<a href="/bug/{{bug_id}}"><button>Go to bug.</button></a>
 	{% endif %}
 	<form method="POST" action="/bug/{{bug_id}}/cancel">
 		<input type="password" name="psswrd" required placeholder="Password">

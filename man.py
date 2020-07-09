@@ -142,7 +142,7 @@ def img_return(file_name):
 
 @app.route(f'/favicon.ico')
 def favicon_binary_img_return():
-    return open('favicon.ico', "rb").read()
+    return open('favicon.ico', "rb").read() 
 
 @app.errorhandler(400)
 @app.route('/err400')
@@ -221,4 +221,4 @@ def e418(e):
     return render_template('418.html'), 418
       
 if __name__ == "__main__":
-    app.run(port=8080, debug=True)
+    app.run(port=man_settings["port"])

@@ -1,5 +1,6 @@
 {
     "root_pswrd": "html5css3",
     "project_name": "HeWo!",
-    "uploads_folder":"uplds/"
+    "uploads_folder":"uplds/",
+    "port":8080
 }
