@@ -1,7 +1,7 @@
-.vscode\
-man.log
-__pycache__\
+.vscode
+\man.log
+__pycache__
 
-templates\i.htm
+\templates\i.htm
 
-uplds\
+uplds
