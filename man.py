@@ -3,6 +3,7 @@ import logging as log
 import os
 import random
 
+import requests
 from flask import Flask, render_template, request
 
 import pstg
@@ -33,11 +34,17 @@ def gen():
         res += (a)
     return res + ".png"
 
+def advert_gen():
+    request = requests.get('http://maxmine2.ru/tbt/res/advert/adverts.html')
+    m = int(request.text)
+    return random.randint(0, m)
+    
 
 @app.route('/')
 def index():
     log.info('Asked for Index, returned succesfull')
-    return render_template("index.html", project_name=man_settings["project_name"])
+    n = advert_gen()
+    return render_template("index.html", project_name=man_settings["project_name"], numb=str(n))
 
 @app.route('/bug')
 @app.route('/bugs')
